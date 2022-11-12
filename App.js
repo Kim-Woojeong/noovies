@@ -3,8 +3,10 @@ import { Ionicons } from "@expo/vector-icons";
 import * as SplashScreen from 'expo-splash-screen';
 import { Text, View } from 'react-native';
 import * as Font from 'expo-font';
+import Tabs from './navigation/Tabs';
+import { NavigationContainer } from '@react-navigation/native';
 
-SplashScreen.preventAutoHideAsync();
+// SplashScreen.preventAutoHideAsync();
 
 const loadFonts = fonts => fonts.map(font => Font.loadAsync(font));
 
@@ -14,7 +16,6 @@ export default function App() {
   useEffect(() => {
     async function prepare() {
       try {
-        // await Font.loadAsync(Entypo.font);
         const fonts = loadFonts([Ionicons.font]);
         await Promise.all([...fonts]);
 
@@ -40,11 +41,15 @@ export default function App() {
   }
 
   return (
-    <View
-      style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-      onLayout={onLayoutRootView}>
-      <Text>We are done loading!</Text>
-      <Ionicons name="rocket" size={24} color="black" />
-    </View>
+    <NavigationContainer>
+      {/* <View
+        style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+        onLayout={onLayoutRootView}
+        >
+        <Text>We are done loading!</Text>
+        <Ionicons name="rocket" size={24} color="black" />
+      </View> */}
+      <Tabs />
+    </NavigationContainer>
   );
 }
