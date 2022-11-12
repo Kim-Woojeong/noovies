@@ -43,7 +43,7 @@ export default function App() {
     <View
       style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
       onLayout={onLayoutRootView}>
-      <Text>SplashScreen Demo! 👋</Text>
+      <Text>We are done loading!</Text>
       <Ionicons name="rocket" size={24} color="black" />
     </View>
   );
