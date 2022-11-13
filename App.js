@@ -5,6 +5,7 @@ import { Text, View } from 'react-native';
 import * as Font from 'expo-font';
 import Tabs from './navigation/Tabs';
 import { NavigationContainer } from '@react-navigation/native';
+import Stack from './navigation/Stack';
 
 // SplashScreen.preventAutoHideAsync();
 
@@ -49,7 +50,8 @@ export default function App() {
         <Text>We are done loading!</Text>
         <Ionicons name="rocket" size={24} color="black" />
       </View> */}
-      <Tabs />
+      {/* <Tabs /> */}
+      <Stack />
     </NavigationContainer>
   );
 }
