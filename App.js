@@ -6,6 +6,7 @@ import * as Font from 'expo-font';
 import Tabs from './navigation/Tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import Stack from './navigation/Stack';
+import Root from './navigation/Root';
 
 // SplashScreen.preventAutoHideAsync();
 
@@ -43,15 +44,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      {/* <View
-        style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
-        onLayout={onLayoutRootView}
-        >
-        <Text>We are done loading!</Text>
-        <Ionicons name="rocket" size={24} color="black" />
-      </View> */}
-      {/* <Tabs /> */}
-      <Stack />
+      <Root />
     </NavigationContainer>
   );
 }
