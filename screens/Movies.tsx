@@ -1,3 +1,4 @@
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React from "react";
 import styled from "styled-components/native";
 
@@ -15,7 +16,9 @@ const Title = styled.Text`
   `;
 
 // Btn과 Title로 컴포넌트 변경
-const Movies = ({ navigation: {navigate}}) => (
+const Movies: React.FC<NativeStackScreenProps<any, "Movie">> = ({ 
+  navigation: {navigate}
+}) => (
   <Btn onPress={()=> navigate("Stack", {screen: "Three"})}>
     <Title>Movies</Title>
   </Btn>
