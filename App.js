@@ -4,10 +4,11 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Text, useColorScheme, View } from 'react-native';
 import * as Font from 'expo-font';
 import Tabs from './navigation/Tabs';
-import { NavigationContainer, ThemeProvider } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import Stack from './navigation/Stack';
 import Root from './navigation/Root';
 import { darkTheme, lightTheme } from './styled';
+import { ThemeProvider } from "styled-components/native";
 
 // SplashScreen.preventAutoHideAsync();
 
