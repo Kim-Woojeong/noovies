@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Ionicons } from "@expo/vector-icons";
 import * as SplashScreen from 'expo-splash-screen';
-import { Text, View } from 'react-native';
+import { Text, useColorScheme, View } from 'react-native';
 import * as Font from 'expo-font';
 import Tabs from './navigation/Tabs';
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, ThemeProvider } from '@react-navigation/native';
 import Stack from './navigation/Stack';
 import Root from './navigation/Root';
+import { darkTheme, lightTheme } from './styled';
 
 // SplashScreen.preventAutoHideAsync();
 
@@ -38,13 +39,18 @@ export default function App() {
     }
   }, [appIsReady]);
 
+  const isDark = useColorScheme() === "dark"; // hook은 한번만 쓰면됨!
+
   if (!appIsReady) {
     return null;
   }
 
   return (
-    <NavigationContainer>
-      <Root />
-    </NavigationContainer>
+    // ThemeProvider라는 새로운 컴포넌트를 사용해서 테마를 적용해보자. props로 theme을 내려주면 모든 스크린에서 theme에 접근할수있음.
+    <ThemeProvider theme = {isDark ? darkTheme : lightTheme}>
+      <NavigationContainer >
+        <Root />
+      </NavigationContainer>
+    </ThemeProvider>
   );
 }
