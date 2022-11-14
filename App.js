@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Ionicons } from "@expo/vector-icons";
 import * as SplashScreen from 'expo-splash-screen';
-import { Text, useColorScheme, View } from 'react-native';
+import { useColorScheme } from 'react-native';
 import * as Font from 'expo-font';
 import Tabs from './navigation/Tabs';
-import { NavigationContainer, ThemeProvider } from '@react-navigation/native';
+import { NavigationContainer } from '@react-navigation/native';
 import Stack from './navigation/Stack';
 import Root from './navigation/Root';
+import { ThemeProvider } from "styled-components/native";
 import { darkTheme, lightTheme } from './styled';
 
 // SplashScreen.preventAutoHideAsync();
