@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { StyleSheet, useColorScheme } from "react-native";
 import { makeImagePath } from "../utils";
 import { BlurView } from 'expo-blur';
+import Poster from "./Poster";
 
 const View = styled.View`
   flex: 1;
@@ -19,11 +20,6 @@ const Wrapper = styled.View`
     align-items: center;
 `;
 
-const Poster = styled.Image`
-    width: 100px;
-    height: 160px;
-    border-radius: 5px;
-`;
 const Column = styled.View`
   width: 60%;
 `;
@@ -73,7 +69,7 @@ const Slide:React.FC<SlideProps> = ({
                 style={StyleSheet.absoluteFill}
                 >
                 <Wrapper>
-                    <Poster source={ {url:makeImagePath(posterPath)} } />
+                    <Poster path={posterPath} />
                     <Column>
                         <Title isDark={isDark}>{originalTitle}</Title>
                         { voteAverage ? // 평점이 존재할때만 보여주기
