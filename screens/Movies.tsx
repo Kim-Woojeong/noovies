@@ -2,8 +2,9 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import React, { useEffect, useState } from "react";
 import styled from "styled-components/native";
 import Swiper from "react-native-swiper";
-import { ActivityIndicator, Dimensions } from "react-native";
+import { ActivityIndicator, Dimensions, ScrollView } from "react-native";
 import Slide from "../component/Slide";
+import Poster from "../component/Poster";
 
 const API_KEY = "48a6ca256cf4aff764d5e59b8b021dd2";
 const {height: SCREEN_HEIGHT} = Dimensions.get("window");
@@ -14,6 +15,34 @@ const Loader = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
+`;
+
+const ListTitle = styled.Text`
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  margin-left: 30px;
+`;
+
+const TrendingScroll = styled.ScrollView`
+  margin-top: 20px;
+`;
+
+const Movie = styled.View`
+  margin-right: 20px;
+  align-items: center;
+`;
+
+const Title = styled.Text`
+  color: white;
+  font-weight: 600;
+  margin-top: 7px;
+  margin-bottom: 5px;
+`;
+
+const Votes = styled.Text`
+  color: white;
+  font-size: 10px;
 `;
 
 const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
@@ -36,16 +65,17 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
   const getTrending = async () => {
     const {results} = await (
       await fetch(
-        `https://api.themoviedb.org/3/movie/trending/movie/week?api_key=${API_KEY}`
+        `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`
         )
     ).json();
     setTrending(results);
+    console.log(results[0].original_title.slice(0,5));
   };
 
   const getUpcoming = async () => {
     const {results} = await (
       await fetch(
-        `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1&region=KR`
         )
     ).json();
     setUpcoming(results);
@@ -74,7 +104,7 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
           autoplayTimeout={3.5}
           showsButtons={false}
           showsPagination={false}
-          containerStyle={{ width: "100%", height: SCREEN_HEIGHT / 4 }}>
+          containerStyle={{ marginBottom: 30, width: "100%", height: SCREEN_HEIGHT / 4 }}>
             {nowPlaying.map((movie) => (
               <Slide
                 key={movie.id}
@@ -86,8 +116,25 @@ const Movies: React.FC<NativeStackScreenProps<any, "Movies">> = () => {
                 />
             ))}
       </Swiper>
+      <ListTitle>Trending Movie</ListTitle>
+      <TrendingScroll 
+        contentContainerStyle={{ paddingLeft: 30 }}
+        horizontal
+        showsHorizontalScrollIndicator={false}
+      >
+        {trending.map((movie) => (
+          <Movie key={movie.id}>
+            <Poster path={movie.poster_path}/>
+            <Title>
+              {movie.original_title.slice(0, 13)}
+              {movie.original_title.length > 13 ? "..." : null}
+            </Title>
+            <Votes>⭐️ {movie.vote_average}/10</Votes>
+          </Movie>
+          ))}
+      </TrendingScroll>
     </Container>
-  )
+  );
 };
 
 export default Movies;
